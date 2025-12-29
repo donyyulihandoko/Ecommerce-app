@@ -1,59 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 @section('content')
-    <main class="pt-90">
-        <div class="mb-4 pb-4"></div>
-        <section class="login-register container">
-            <ul class="nav nav-tabs mb-5" id="login_register" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link nav-link_underscore active" id="login-tab" data-bs-toggle="tab" href="#tab-item-login"
-                        role="tab" aria-controls="tab-item-login" aria-selected="true">{{ $title }}</a>
-                </li>
-            </ul>
-            <div class="tab-content pt-2" id="login_register_tab_content">
-                <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
-                    <div class="login-form">
-                        <form method="POST" action="{{ route('password.update') }}" name="login-form"
-                            class="needs-validation" novalidate="">
-                            @csrf
-
-                            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-                            <input type="hidden" name="email" value="{{ $request->email }}">
-
-                            <div class="form-floating mb-3">
-                                <input id="password" type="password" class="form-control form-control_gray "
-                                    name="password" required="" autocomplete="current-password">
-                                <label for="password">Password *</label>
-                                @error('password')
-                                    <span style="color: red">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="pb-3"></div>
-
-                            <div class="form-floating mb-3">
-                                <input id="password_confirmation" type="" class="form-control form-control_gray "
-                                    name="password_confirmation" required="" autocomplete="current-password">
-                                <label for="password_confirmation">Password Confirmation *</label>
-                                @error('password_confirmation')
-                                    <span style="color: red">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button>
-                            <div class="customer-option mt-4 text-center">
-                                <span class="text-secondary">Forgot Password?</span>
-                                <a href="{{ route('password.request') }}" class="btn-text js-show-register">Forgot
-                                    Password</a>
-                            </div>
-                        </form>
-                        <div class="customer-option mt-4 text-center">
-                            <span class="text-secondary">No account yet?</span>
-                            <a href="{{ route('register') }}" class="btn-text js-show-register">Create Account</a>
-                        </div>
-                        </form>
-                    </div>
+    <form action="{{ route('password.update') }}" method="POST">
+        @csrf
+        <div class="login-box">
+            <div class="login-form">
+                <a href="#" class="login-logo">
+                    <img src="{{ asset('assets/images/logo.svg') }}" alt="Vico Admin" />
+                </a>
+                <div class="login-welcome">
+                    {{ $title ?? config('APP_NAME') }}, <br />Please login to your Arise admin account.
                 </div>
+
+                <input type="hidden" name="token" value="{{ $request->token }}">
+                <input type="hidden" name="email" id="email" value="{{ $request->email }}">
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <label class="form-label" for="password">Password</label>
+                        <a href="{{ route('login') }}" class="btn-link ml-auto">Remember Password?</a>
+                    </div>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                    @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <label class="form-label" for="password_confirmation">Password Confirmation</label>
+                    </div>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
+                        placeholder="Password">
+                    @error('password_confirmation')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="login-form-actions">
+                    <button type="submit" class="btn"> <span class="icon"> <i class="bi bi-arrow-right-circle"></i>
+                        </span>
+                        Reset Password</button>
+                </div>
+
+
+
             </div>
-        </section>
-    </main>
+        </div>
+    </form>
 @endsection

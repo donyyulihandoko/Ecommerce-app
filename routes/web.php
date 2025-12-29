@@ -9,10 +9,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // Admin
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
 
 // User
 Route::middleware(['auth', 'isUser'])->group(function () {
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+    // Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
 });
