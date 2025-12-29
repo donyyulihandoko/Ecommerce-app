@@ -18,11 +18,12 @@ class AuthAdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::authenticate() && Auth::user()->role === 'admin') {
+            if (Auth::user()->role === 'admin') {
                 return $next($request);
             } else {
                 Session::flush();
                 return redirect()->route('login');
+                // return redirect('/');
             }
         } else {
             return redirect()->route('login');

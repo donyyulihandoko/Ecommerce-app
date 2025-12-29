@@ -15,7 +15,7 @@ class AuthenticationTest extends TestCase
         $response = $this->get(route('login'));
 
         $response->assertStatus(200)
-            ->assertSeeText('Halaman Login');
+            ->assertSeeText('Login Page');
     }
 
     public function test_login_user_succes()

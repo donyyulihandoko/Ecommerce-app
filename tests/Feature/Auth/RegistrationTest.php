@@ -13,7 +13,7 @@ class RegistrationTest extends TestCase
     {
         $response = $this->get(route('register'));
         $response->assertStatus(200)
-            ->assertSeeText('Halaman Register');
+            ->assertSeeText('Register Page');
     }
 
     public function test_register_new_user_success()

@@ -47,27 +47,27 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::registerView(function () {
             return response()->view('auth.register', [
-                'title' => 'Halaman Register'
+                'title' => 'Register Page'
             ]);
         });
 
         Fortify::loginView(function () {
             return response()->view('auth.login', [
-                'title' => 'Halaman Login'
+                'title' => 'Login Page'
             ]);
         });
 
 
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password', [
-                'title' => 'Halaman Forgot Password'
+                'title' => 'Forgot Password Page'
             ]);
         });
 
         Fortify::resetPasswordView(function ($request) {
             return view('auth.reset-password', [
                 'request' => $request,
-                'title' => 'Halaman Reset Password'
+                'title' => 'Reset Password Page'
             ]);
         });
     }

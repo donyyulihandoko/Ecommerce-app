@@ -18,11 +18,12 @@ class AuthUserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::authenticate() && Auth::user()->role === 'user') {
+            if (Auth::user()->role === 'user') {
                 return $next($request);
             } else {
-                Session::flush();
-                return redirect()->route('login');
+                return redirect('/');
+                // Session::flush();
+                // return redirect()->route('login');
             }
         } else {
             return redirect()->route('login');

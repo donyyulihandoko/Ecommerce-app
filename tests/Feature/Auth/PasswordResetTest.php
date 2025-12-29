@@ -16,7 +16,7 @@ class PasswordResetTest extends TestCase
     {
         $response = $this->get(route('password.request'));
         $response->assertStatus(200)
-            ->assertSeeText('Halaman Forgot Password');
+            ->assertSeeText('Forgot Password Page');
     }
 
     public function test_reset_password_link_can_requested()
@@ -59,7 +59,7 @@ class PasswordResetTest extends TestCase
             $response = $this->get('/reset-password/' . $notification->token);
 
             $response->assertStatus(200)
-                ->assertSeeText('Halaman Reset Password');
+                ->assertSeeText('Reset Password Page');
 
             return true;
         });
