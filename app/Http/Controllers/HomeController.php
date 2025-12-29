@@ -10,6 +10,6 @@ class HomeController extends Controller
 {
     public function index(): Response
     {
-        return response()->view('dashboard');
+        return response()->view('index');
     }
 }
