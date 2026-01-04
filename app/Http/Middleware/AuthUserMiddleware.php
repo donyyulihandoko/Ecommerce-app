@@ -17,16 +17,10 @@ class AuthUserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            if (Auth::user()->role === 'user') {
-                return $next($request);
-            } else {
-                return redirect('/');
-                // Session::flush();
-                // return redirect()->route('login');
-            }
-        } else {
-            return redirect()->route('login');
-        }
+        if (!Auth::check()) return response()->redirectToRoute('login');
+
+        if (Auth::user()->role !== 'user') abort(403, 'Unauthorized action.');
+
+        return $next($request);
     }
 }

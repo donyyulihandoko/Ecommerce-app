@@ -100,6 +100,11 @@
     <!-- Main Js Required -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    {{-- sweet-alert --}}
+    @include('components.sweet-alert')
+
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    @stack('script')
 </body>
 
 </html>
