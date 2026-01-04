@@ -164,12 +164,12 @@ class BrandControllerTest extends TestCase
         UploadedFile::fake()->image('old.jpg')->storeAs('brand-images', 'old.jpg', 'public');
         $brand = Brand::factory()->create(['image' => $oldPath]);
 
-        $file = UploadedFile::fake()->image('new-brand-logo.jpg');
+        $newImage = UploadedFile::fake()->image('new-brand-logo.jpg');
 
         $response = $this->actingAs($this->admin)->put(route('brands.update', $brand), [
             'name' => 'Brand Test Update',
             'slug' => 'brand-test-update',
-            'image' =>  $file
+            'image' =>  $newImage
         ]);
 
         $response->assertStatus(302)
@@ -190,7 +190,7 @@ class BrandControllerTest extends TestCase
         $brand = Brand::factory()->create();
 
         $response = $this->actingAs($this->admin)
-            ->from(route('brands.edit', $brand->slug))
+            ->from(route('brands.edit', $brand))
             ->put(route('brands.update', $brand), [
                 'name' => '',
                 'slug' => '',

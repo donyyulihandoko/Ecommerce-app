@@ -44,49 +44,33 @@ class BrandServiceImpl implements BrandService
 
     public function addBrand(array $data): Brand
     {
-        try {
+        return DB::transaction(function () use ($data) {
+
             $data['image'] = $this->handleImage($data['image'] ?? null);
             $formData = $this->mapFormBrandData($data);
             return Brand::create($formData);
-        } catch (Exception $e) {
-            report($e);
-            throw $e;
-        }
+        });
     }
 
     public function updateBrand(Brand $brand, array $data): bool
     {
-        try {
+        return DB::transaction(function () use ($brand, $data) {
             $data['image'] = $this->handleImage($data['image'] ?? null, $brand->image);
             $formData = $this->mapFormBrandData($data);
             return $brand->update($formData);
-        } catch (Exception $e) {
-            report($e);
-            throw $e;
-        }
+        });
     }
 
     public function removeBrand(Brand $brand): bool
     {
-        // if ($brand->products()->exists()) {
-        //     throw new Exception("Brand cannot be deleted because it has associated products.");
-        // }
-
         return DB::transaction(function () use ($brand) {
-            try {
+            $imagePath = $brand->image;
+            $deleted = $brand->delete();
 
-                $imagePath = $brand->image;
-                $deleted = $brand->delete();
-
-                if ($deleted && $imagePath) {
-                    Storage::disk('public')->delete($imagePath);
-                }
-
-                return (bool) $deleted;
-            } catch (Exception $e) {
-                report($e);
-                throw $e;
+            if ($deleted && $imagePath) {
+                Storage::disk('public')->delete($imagePath);
             }
+            return (bool) $deleted;
         });
     }
 }
