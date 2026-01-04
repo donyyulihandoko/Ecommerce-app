@@ -3,7 +3,7 @@
             <!-- Sidebar brand starts -->
             <div class="sidebar-brand">
                 <a href="index.html" class="logo">
-                    <img src="assets/images/logo.svg" alt="Admin Dashboards" />
+                    <img src="{{ asset('assets/images/logo.svg') }}" alt="Admin Dashboards" />
                 </a>
             </div>
             <!-- Sidebar brand starts -->
@@ -12,22 +12,16 @@
             <div class="sidebar-menu">
                 <div class="sidebarMenuScroll">
                     <ul>
-                        <li class="sidebar-dropdown active">
-                            <a href="#">
+                        {{-- dashboard start --}}
+                        <li class="sidebar">
+                            <a href="{{ route('home.index') }}">
                                 <i class="bi bi-house"></i>
                                 <span class="menu-text">Dashboards</span>
                             </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="index.html" class="current-page">Analytics</a>
-                                    </li>
-                                    <li>
-                                        <a href="reports.html">Reports</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
+                        {{-- dashboard end --}}
+
+                        {{-- product start --}}
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="bi bi-handbag"></i>
@@ -36,250 +30,110 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="orders.html">Order History</a>
+                                        <a href="widgets.html">Products</a>
                                     </li>
                                     <li>
-                                        <a href="products.html">Products</a>
+                                        <a href="graph-widgets.html">Add Product</a>
                                     </li>
-                                    <li>
-                                        <a href="view-cart.html">Shopping Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="checkout.html">Billing Details</a>
-                                    </li>
-                                    <li>
-                                        <a href="customers.html">Customers</a>
-                                    </li>
-                                    <li>
-                                        <a href="add-product.html">Add Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="reviews.html">Reviews</a>
-                                    </li>
-                                </ul>
                             </div>
                         </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="bi bi-gem"></i>
-                                <span class="menu-text">Widgets</span>
+                        {{-- product end --}}
+
+                        {{-- brand start --}}
+                        <li class="sidebar-dropdown ">
+                            <a>
+                                <i class="bi bi-grid"></i>
+                                <span class="menu-text">Brand</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="widgets.html">Widgets</a>
+                                        <a href="{{ route('brands.index') }}">Brands</a>
                                     </li>
                                     <li>
-                                        <a href="graph-widgets.html">Graph Widgets</a>
+                                        <a href="{{ route('brands.create') }}">New Brand</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        {{-- brand end --}}
+
+                        {{-- category start --}}
                         <li class="sidebar-dropdown">
                             <a href="#">
-                                <i class="bi bi-collection"></i>
-                                <span class="menu-text">UI Elements</span>
+                                <i class="bi bi-grid"></i>
+                                <span class="menu-text">Category</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="accordions.html">Accordions</a>
+                                        <a href="widgets.html">Categories</a>
                                     </li>
                                     <li>
-                                        <a href="alerts.html">Alerts</a>
-                                    </li>
-                                    <li>
-                                        <a href="buttons.html">Buttons</a>
-                                    </li>
-                                    <li>
-                                        <a href="badges.html">Badges</a>
-                                    </li>
-                                    <li>
-                                        <a href="cards.html">Cards</a>
-                                    </li>
-                                    <li>
-                                        <a href="carousel.html">Carousel</a>
-                                    </li>
-                                    <li>
-                                        <a href="dropdowns.html">Dropdowns</a>
-                                    </li>
-                                    <li>
-                                        <a href="icons.html">Icons</a>
-                                    </li>
-                                    <li>
-                                        <a href="modals.html">Modals</a>
-                                    </li>
-                                    <li>
-                                        <a href="offcanvas.html">Off Canvas</a>
-                                    </li>
-                                    <li>
-                                        <a href="progress.html">Progress Bars</a>
-                                    </li>
-                                    <li>
-                                        <a href="spinners.html">Spinners</a>
-                                    </li>
-                                    <li>
-                                        <a href="tabs.html">Tabs</a>
-                                    </li>
-                                    <li>
-                                        <a href="tooltips.html">Tooltips</a>
-                                    </li>
-                                    <li>
-                                        <a href="typography.html">Typography</a>
+                                        <a href="graph-widgets.html">New Category</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        {{-- category end --}}
+
+                        {{-- order start --}}
                         <li class="sidebar-dropdown">
                             <a href="#">
-                                <i class="bi bi-stickies"></i>
-                                <span class="menu-text">Pages</span>
+                                <i class="bi bi-cart3"></i>
+                                <span class="menu-text">Order</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="profile.html">Profile</a>
+                                        <a href="profile.html">Orders</a>
                                     </li>
                                     <li>
-                                        <a href="account-settings.html">Account Settings</a>
+                                        <a href="account-settings.html">Order Tracking</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="bi bi-calendar4"></i>
-                                <span class="menu-text">Calendar</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-dropdown">
+                        {{-- order end --}}
+
+                        {{-- slider start --}}
+                        <li class="sidebar">
                             <a href="#">
-                                <i class="bi bi-columns-gap"></i>
-                                <span class="menu-text">Forms</span>
+                                <i class="bi bi-images"></i>
+                                <span class="menu-text">Slider</span>
                             </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="form-inputs.html">Form Inputs</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-checkbox-radio.html">Checkbox &amp; Radio</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-file-input.html">File Input</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-validations.html">Validations</a>
-                                    </li>
-                                    <li>
-                                        <a href="bs-select.html">Bootstrap Select</a>
-                                    </li>
-                                    <li>
-                                        <a href="date-time-pickers.html">Date Time Pickers</a>
-                                    </li>
-                                    <li>
-                                        <a href="input-mask.html">Input Masks</a>
-                                    </li>
-                                    <li>
-                                        <a href="editor.html">Editor</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-layout1.html">Form Layout</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-layout2.html">Form Layout 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-layout3.html">Form Layout 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-layout4.html">Form Horizontal</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-                        <li class="sidebar-dropdown">
+                        {{-- slider end --}}
+
+                        {{-- coupons start --}}
+                        <li class="sidebar">
                             <a href="#">
-                                <i class="bi bi-window-split"></i>
-                                <span class="menu-text">Tables</span>
+                                <i class="bi bi-ticket"></i>
+                                <span class="menu-text">Coupons</span>
                             </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="tables.html">Tables</a>
-                                    </li>
-                                    <li>
-                                        <a href="data-tables.html">Data Tables</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-                        <li class="sidebar-dropdown">
+                        {{-- coupons end --}}
+
+                        {{-- users start --}}
+                        <li class="sidebar">
                             <a href="#">
-                                <i class="bi bi-pie-chart"></i>
-                                <span class="menu-text">Graphs &amp; Maps</span>
+                                <i class="bi bi-people"></i>
+                                <span class="menu-text">Users</span>
                             </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="apex.html">Apex</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Morris</a>
-                                    </li>
-                                    <li>
-                                        <a href="maps.html">Maps</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-                        <li class="sidebar-dropdown">
+                        {{-- users end --}}
+
+                        {{-- setting start --}}
+                        <li class="sidebar">
                             <a href="#">
-                                <i class="bi bi-layout-sidebar"></i>
-                                <span class="menu-text">Layouts</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="layout.html">Default Layout</a>
-                                    </li>
-                                    <li>
-                                        <a href="layout-grid.html">Grid Layout</a>
-                                    </li>
-                                    <li>
-                                        <a href="layout-welcome.html">Welcome Layout</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="bi bi-x-diamond"></i>
-                                <span class="menu-text">Authentication</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="login.html">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="signup.html">Signup</a>
-                                    </li>
-                                    <li>
-                                        <a href="error.html">Error</a>
-                                    </li>
-                                    <li>
-                                        <a href="maintenance.html">Maintenance</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="starter-page.html">
-                                <i class="bi bi-hand-index-thumb"></i>
-                                <span class="menu-text">Link</span>
+                                <i class="bi bi-gear"></i>
+                                <span class="menu-text">Setting</span>
                             </a>
                         </li>
+                        {{-- setting end --}}
+
+
+
                     </ul>
                 </div>
             </div>

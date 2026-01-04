@@ -17,16 +17,10 @@ class AuthAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            if (Auth::user()->role === 'admin') {
-                return $next($request);
-            } else {
-                Session::flush();
-                return redirect()->route('login');
-                // return redirect('/');
-            }
-        } else {
-            return redirect()->route('login');
-        }
+        if (!Auth::check()) return response()->redirectToRoute('login');
+
+        if (Auth::user()->role !== 'admin') abort(403, 'Unauthorized action.');
+
+        return $next($request);
     }
 }

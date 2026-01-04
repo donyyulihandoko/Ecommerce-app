@@ -3,6 +3,7 @@
     <div class="content-wrapper">
 
         <div class="row">
+            @include('components.alert')
             <div class="col-xxl-3 col-md-4 col-sm-6 col-12">
                 <div class="product-card">
                     <img class="product-card-img-top" src="assets/images/food/img6.jpg" alt="Bootstrap Gallery">
