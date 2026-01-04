@@ -13,7 +13,7 @@
                 <div class="sidebarMenuScroll">
                     <ul>
                         {{-- dashboard start --}}
-                        <li class="sidebar">
+                        <li class="sidebar {{ request()->routeIs('home.*') ? 'active' : '' }}">
                             <a href="{{ route('home.index') }}">
                                 <i class="bi bi-house"></i>
                                 <span class="menu-text">Dashboards</span>
@@ -22,7 +22,7 @@
                         {{-- dashboard end --}}
 
                         {{-- product start --}}
-                        <li class="sidebar-dropdown">
+                        <li class="sidebar-dropdown ">
                             <a href="#">
                                 <i class="bi bi-handbag"></i>
                                 <span class="menu-text">Product</span>
@@ -40,7 +40,7 @@
                         {{-- product end --}}
 
                         {{-- brand start --}}
-                        <li class="sidebar-dropdown ">
+                        <li class="sidebar-dropdown {{ request()->routeIs('brands.*') ? 'active' : '' }}">
                             <a>
                                 <i class="bi bi-grid"></i>
                                 <span class="menu-text">Brand</span>
@@ -59,7 +59,7 @@
                         {{-- brand end --}}
 
                         {{-- category start --}}
-                        <li class="sidebar-dropdown">
+                        <li class="sidebar-dropdown {{ request()->routeIs('categories.*') ? 'active' : '' }}">
                             <a href="#">
                                 <i class="bi bi-grid"></i>
                                 <span class="menu-text">Category</span>
@@ -67,10 +67,10 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="widgets.html">Categories</a>
+                                        <a href="{{ route('categories.index') }}">Categories</a>
                                     </li>
                                     <li>
-                                        <a href="graph-widgets.html">New Category</a>
+                                        <a href="{{ route('categories.create') }}">New Category</a>
                                     </li>
                                 </ul>
                             </div>

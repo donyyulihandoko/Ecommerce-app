@@ -31,13 +31,10 @@ class BrandController extends Controller
         return response()->view('admin.brand.index', [
             'title' => 'Brands Page',
             'brands' => $this->brandService->getBrands(),
-            // 'status' => 'active'
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return response()->view('admin.brand.create', [
@@ -45,39 +42,36 @@ class BrandController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    private function logActivity(string $event, array $extra = [])
+    {
+        Log::info($event, array_merge([
+            'admin' => $this->userService->getUserLogin()->name ?? 'Unknown',
+            'ip' => request()->ip(),
+            'url' => request()->fullUrl(),
+        ], $extra));
+    }
+
+
     public function store(BrandRequest $request): RedirectResponse
     {
         try {
             $this->brandService->addBrand($request->validated());
 
-            Log::info('Brand Created', [
-                'operator' => $this->userService->getUserLogin()->name ?? 'Unknown',
-                'brand_name' => $request->name,
-                'payload' => $request->except(['image', '_token']) // Hindari log token CSRF
+            $this->logActivity('Brand Created', [
+                'payload' => $request->except('image')
             ]);
 
             return response()->redirectToRoute('brands.index')->with('success', 'Brand created successfully!');
         } catch (Exception $e) {
+
+            report($e);
             return redirect()->back()
                 ->withInput() // Menjaga teks yang sudah diketik user tidak hilang
                 ->with('error', 'Failed to create brand. Please try again.');
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(string $id)
-    // {
-    //     //
-    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Brand $brand)
     {
         return response()->view('admin.brand.edit', [
@@ -86,43 +80,39 @@ class BrandController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(BrandRequest $request, Brand $brand): RedirectResponse
     {
         try {
             $this->brandService->updateBrand($brand, $request->validated());
-            Log::info('Brand Updated', [
-                'operator' => $this->userService->getUserLogin()->name ?? 'Unknown',
+            $this->logActivity('Brand Updated', [
                 'brand_id' => $brand->id,
                 'changes' => $request->except(['image', '_token', '_method'])
             ]);
+
             return response()->redirectToRoute('brands.index')->with('success', 'Brand updated successfully!');
         } catch (Exception $e) {
+            report($e);
             return redirect()->back()
                 ->withInput() // Menjaga teks yang sudah diketik user tidak hilang
                 ->with('error', 'Failed to update brand. Please try again.');
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Brand $brand): RedirectResponse
     {
         try {
-
             $this->brandService->removeBrand($brand);
 
-            Log::info('Brand Deleted', [
-                'operator' => $this->userService->getUserLogin()->name ?? 'Unknown',
+            $this->logActivity('Brand Deleted', [
                 'brand_id' => $brand->id,
                 'brand_name' => $brand->name
             ]);
 
             return redirect()->back()->with('success', 'Brand deleted successfully!');
         } catch (Exception $e) {
+            report($e);
             return redirect()->back()->with('error', 'Brand deleted failed!');
         }
     }
